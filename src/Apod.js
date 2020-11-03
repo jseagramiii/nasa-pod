@@ -1,19 +1,38 @@
 import React from 'react'
+import Loading from './Loading'
 
-const Apod = ({apod}) => {
+const Apod = ({apod, loading}) => {
+
+    if(loading) return <Loading />
+    
+    let media 
+    if (apod.media_type === 'video') {
+        media = <iframe title='apod' width='900' height="600"
+        src={apod.url}></iframe>
+    } else {
+        media = <img src={apod.url} alt='apod'></img>
+    }
+    let copyright
+    if (apod.copyright) {
+        copyright = <p>copyright - <strong>{apod.copyright}</strong></p>
+    } else {
+        copyright = <p style={displayNone}>copyright - <strong>{apod.copyright}</strong></p>
+    }
 
     return (
          <div className='apod'>
             <a href='https://nasa.gov'>
             <img style={{width: '20em'}}src='https://www.nasa.gov/sites/default/files/thumbnails/image/s75-31690.jpeg' alt='nasa'></img>
             </a>
-            <h2>Astronomy Picture of the Day || {apod.date}</h2>
+            <h1>Astronomy Image of the Day || {apod.date}</h1>
             <h2><em>{apod.title}</em></h2>
-            <img src={apod.url} alt='apod'></img>
-            <h6>copyright - <strong>{apod.copyright}</strong></h6>
-            <h3>{apod.explanation}</h3>
+            {media}
+            {copyright}
+            <h3><strong>Explanation:</strong> {apod.explanation}</h3>
         </div>
     )
 }
+
+const displayNone = {display: 'none'}
 
 export default Apod

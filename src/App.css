@@ -1,7 +1,18 @@
 .apod {
   display: grid;
+  text-align: center;
   justify-content: center;
   max-width: 950px;
+  height: auto;
   padding: 2em;
-  font-family: Oxygen;
+  margin: auto;
+  font-family: 'Courier New', Courier, monospace;
+}
+img {
+  max-width: 900px;
+  height: auto;
+}
+iframe {
+  padding: 3em;
+  border: 2px solid black;
 }
