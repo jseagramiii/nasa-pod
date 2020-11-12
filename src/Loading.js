@@ -4,7 +4,7 @@ import spin from './spin.gif'
 const Loading = () => {
     return (
         <div>
-            <img src={spin} alt=""/>
+            <img src={spin} alt="loading" style={{display: 'block', margin: '0 auto'}} />
         </div>
     )
 }

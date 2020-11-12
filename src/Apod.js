@@ -1,9 +1,6 @@
 import React from 'react'
-import Loading from './Loading'
 
-const Apod = ({apod, loading}) => {
-
-    if(loading) return <Loading />
+const Apod = ({apod}) => {
     
     let media 
     if (apod.media_type === 'video') {

@@ -1,18 +1,46 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(16, 79, 82);
+}
+
+li {
+  float: right;
+}
+
+li a {
+  margin: 1em 0.5em;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+
 .apod {
   display: grid;
   text-align: center;
   justify-content: center;
   max-width: 950px;
   height: auto;
-  padding: 2em;
-  margin: auto;
+  padding: 1em;
+  margin: 0.5em auto;
   font-family: 'Courier New', Courier, monospace;
 }
+
 img {
   max-width: 900px;
   height: auto;
+  margin: 0.5em auto;
 }
 iframe {
-  padding: 3em;
+  margin: 0 auto;
   border: 2px solid black;
 }
