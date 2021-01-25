@@ -3,11 +3,9 @@ import React from 'react'
 const Apod = ({ apod }) => {
   let media
   if (apod.media_type === 'video') {
-    media = (
-      <iframe title='apod' width='900' height='600' src={apod.url}></iframe>
-    )
+    media = <iframe title='apod' width='900' height='600' src={apod.url} />
   } else {
-    media = <img src={apod.hdurl} style={{ maxWidth: '60em' }} alt='apod'></img>
+    media = <img src={apod.hdurl} style={{ maxWidth: '60em' }} alt='apod' />
   }
   let copyright
   if (apod.copyright) {
@@ -31,7 +29,7 @@ const Apod = ({ apod }) => {
           style={{ width: '20em' }}
           src='https://www.nasa.gov/sites/default/files/thumbnails/image/s75-31690.jpeg'
           alt='nasa'
-        ></img>
+        />
       </a>
       <h1>Astronomy Image of the Day || {apod.date}</h1>
       <h2>
