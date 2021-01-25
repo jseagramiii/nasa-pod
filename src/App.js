@@ -1,60 +1,52 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import {Router} from '@reach/router'
-import './App.css';
+import { Router } from '@reach/router'
+import './App.css'
 import Nav from './Nav'
 import Apod from './Apod'
-import Rover from './Rover'
-
+import About from './About'
 
 const App = () => {
-  const apiKey = process.env.REACT_APP_API_KEY
+  const apiKey = '7SsdparuNWOTb0dg0CbCkPaj1p2ndTtAlFzbfBak'
   const [apod, setApod] = useState({})
-  const [rover, setRover] = useState({})
+  const [date, setDate] = useState(new Date())
 
-  const getApod = async () => {
-    let res = await axios.get(
-      `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`)
-   
-    setApod(res.data)
+  // setDate(today)
+  const todayF = () => {
+    let today = new Date(),
+      month = '' + (today.getMonth() + 1),
+      day = '' + today.getDate(),
+      year = today.getFullYear()
+
+    if (month.length < 2) {
+      month = '0' + month
+    }
+    if (day.length < 2) {
+      day = '0' + day
+    }
+    return [year, month, day].join('-')
   }
-
-  const getRover = async () => {
-    let res = await axios.get(`https://api.nasa.gov/mars-photos/api/v1/ rovers/curiosity/photos?earth_date=${today()}&api_key=${apiKey}`)
-
-    setRover(res.data)
-  }
-  console.log(rover)
 
   useEffect(() => {
-    getApod()
-    getRover()
-  },[])
-
-  const today = () => {
-    let today = new Date(),
-        month = '' + (today.getMonth() + 1),
-        day = '' + today.getDate(),
-        year = today.getFullYear();
-
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
-
-    return [year, month, day].join('-');
-} 
+    const getApod = async () => {
+      const res = await axios.get(
+        `https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${date}`
+      )
+      setApod(res.data)
+    }
+    setDate(todayF)
+    getApod() // eslint-disable-next-line
+  }, [date])
 
   return (
     <div className='app'>
-      <Nav  />
+      <Nav />
       <Router>
         <Apod path='/' apod={apod} />
-        <Rover path='rover' rover={rover} />
+        <About path='About' />
       </Router>
     </div>
-    
-  );
+  )
 }
 
-export default App;
+export default App
